@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liver Tumor Detection</title>
+    <link rel="stylesheet" href="{% static 'homepage/styles.css' %}">
+    <style>
+        /* Smooth scroll for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li> <!-- Link updated to scroll to 'About' section -->
+                <li><a href="#">Detection</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hero-section">
+            <h1>Liver Tumor Detection</h1>
+            <p>Utilizing advanced AI techniques for accurate and early detection of liver tumors.</p>
+            <a href="#" class="cta-button">Learn More</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Why Choose Our Detection System?</h2>
+            <div class="feature-box">
+                <h3>High Accuracy</h3>
+                <p>Our AI-driven models provide precise detection of liver tumors, ensuring high accuracy in diagnosis.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Early Detection</h3>
+                <p>Detect tumors at an early stage for more effective treatment and improved patient outcomes.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Fast Results</h3>
+                <p>Our system delivers results within minutes, allowing for quick decisions in urgent cases.</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2>About Our System</h2>
+            <p>We specialize in liver tumor detection, leveraging the power of artificial intelligence to provide reliable and efficient diagnosis solutions. Our system uses state-of-the-art AI models trained on a vast dataset to ensure high accuracy and early detection, empowering healthcare professionals to make informed decisions quickly.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Liver Tumor Detection. All rights reserved.</p>
+    </footer>
+</body>
+</html>
