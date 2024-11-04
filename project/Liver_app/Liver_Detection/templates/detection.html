@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detection</title>
+</head>
+<body>
+    <h2>Upload an MRI Image for Tumor Detection</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image">
+        <button type="submit">Run</button>
+    </form>
+    {% if image_url %}
+    <h3>Original Image</h3>
+    <img src="{{ image_url }}" alt="Original Image">
+    <h3>Segmented Mask</h3>
+    <img src="{{ segmented_url }}" alt="Segmented Mask">
+{% endif %}
+
+</body>
+</html>
