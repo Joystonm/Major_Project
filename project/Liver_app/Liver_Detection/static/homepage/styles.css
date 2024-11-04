@@ -82,7 +82,7 @@ nav ul li a:hover {
 }
 
 /* About Section */
-.about {
+/* .about {
     padding: 80px 0;
     text-align: center;
     background-color: #ffffff;
@@ -100,10 +100,57 @@ nav ul li a:hover {
     max-width: 800px;
     margin: 0 auto;
     color: #555;
+} */
+
+.about {
+    padding: 80px 20px; /* Responsive padding */
+    text-align: center;
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.about h2 {
+    font-size: 2.5rem; /* Main heading size */
+    margin-bottom: 30px; /* Space below heading */
+    color: #004d40; /* Dark teal color */
+    text-transform: uppercase; /* Uppercase for emphasis */
+    letter-spacing: 1px; /* Spacing between letters */
+}
+
+.about p {
+    font-size: 1.2rem; /* Paragraph size */
+    line-height: 1.8; /* Line height for readability */
+    max-width: 800px; /* Max width for paragraphs */
+    margin: 0 auto; /* Centering */
+    color: #555; /* Gray color for text */
+    padding: 0 10px; /* Padding for mobile responsiveness */
+}
+
+.about p:nth-of-type(odd) {
+    background-color: #e0f7fa; /* Light background for odd paragraphs */
+    padding: 20px; /* Padding around text */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.about p:nth-of-type(even) {
+    background-color: #ffffff; /* White background for even paragraphs */
+    padding: 20px; /* Padding around text */
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about h2 {
+        font-size: 2rem; /* Slightly smaller heading on mobile */
+    }
+
+    .about p {
+        font-size: 1rem; /* Slightly smaller text on mobile */
+    }
 }
 
 /* Features Section */
-.features {
+/* .features {
     background-color: #f1f1f1;
     padding: 80px 0;
     text-align: center;
@@ -136,7 +183,84 @@ nav ul li a:hover {
     font-size: 1rem;
     line-height: 1.6;
     color: #555;
+} */
+
+.features {
+    /* padding: 80px 20px; Responsive padding */
+    background-color: #f9f9f9; /* Light gray background */
+    display: flex;
+    padding: 2%;
+    text-align: center; /* Center text */
 }
+
+.features h2 {
+    font-size: 2.5rem; /* Main heading size */
+    margin-bottom: 40px; /* Space below heading */
+    color: #004d40; /* Dark teal color */
+    text-transform: uppercase; /* Uppercase for emphasis */
+    letter-spacing: 1px; /* Spacing between letters */
+}
+
+.features-container {
+    display: flex; /* Use flexbox to arrange feature boxes in a row */
+    flex-direction: row; /* Ensure items are arranged in a row */
+    justify-content: space-around; /* Space boxes evenly */
+    align-items: stretch; /* Stretch boxes to equal height */
+}
+
+.feature-box {
+    background-color: #ffffff; /* White background for feature boxes */
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside feature boxes */
+    margin: 0 10px; /* Margin between boxes */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 30%; /* Fixed width for each box */
+    height: 200px; /* Fixed height for all boxes */
+    transition: transform 0.3s; /* Smooth hover effect */
+}
+
+.feature-box h3 {
+    font-size: 1.8rem; /* Subheading size */
+    margin-bottom: 15px; /* Space below subheading */
+    color: #004d40; /* Dark teal color */
+}
+
+.feature-box p {
+    font-size: 1rem; /* Paragraph size */
+    color: #555; /* Gray color for text */
+}
+
+/* Hover effect for feature boxes */
+.feature-box:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .features h2 {
+        font-size: 2rem; /* Slightly smaller heading on mobile */
+    }
+
+    .features-container {
+        flex-direction: column; /* Stack boxes vertically on mobile */
+        align-items: center; /* Center items in the column */
+    }
+
+    .feature-box {
+        width: 90%; /* Full width on mobile */
+        margin: 10px 0; /* Margin above and below each box */
+    }
+
+    .feature-box h3 {
+        font-size: 1.5rem; /* Slightly smaller subheading on mobile */
+    }
+
+    .feature-box p {
+        font-size: 0.9rem; /* Slightly smaller text on mobile */
+    }
+}
+
 
 /* Footer Styles */
 footer {
