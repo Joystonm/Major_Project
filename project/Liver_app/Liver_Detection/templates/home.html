@@ -11,15 +11,15 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#about-section">About</a></li> <!-- Link to About Section -->
-                <li><a href="#">Detection</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#about-section">About</a></li> 
+                <li><a href="{% url 'detection' %}">Detection</a></li>
+                {% comment %} <li><a href="#">Contact</a></li>   {% endcomment %}
             </ul>
         </nav>
         <div class="hero-section">
             <h1>Liver Tumor Detection</h1>
-            <p>Utilizing advanced AI techniques for accurate and early detection of liver tumors.</p>
+            <p>Utilizing advanced techniques for accurate and early detection of liver tumors.</p>
             <a href="#about-section" class="cta-button">Learn More</a> <!-- Scroll to About Section -->
         </div>
     </header>
@@ -27,7 +27,7 @@
     <main>
         <section id="about-section" class="about">
             <h2>About Our System</h2>
-            <p>Our liver tumor detection system leverages the latest AI technology to provide fast, accurate results.</p>
+            <p>Our liver tumor detection system leverages the latest  technology to provide fast, accurate results.</p>
         </section>
 
         <section class="features">

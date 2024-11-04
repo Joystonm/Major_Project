@@ -16,13 +16,16 @@ body {
 header {
     background: #004d40;
     color: white;
-    padding: 20px 0;
+   
+    /* padding: 40px 0; */
+    padding: 30px;
     text-align: center;
     position: relative;
 }
 
 nav ul {
     display: flex;
+    margin-bottom: 10px;
     justify-content: center;
     list-style: none;
     padding: 0;
@@ -43,7 +46,7 @@ nav ul li a {
 
 nav ul li a:hover {
     background: #00796b;
-    border-radius: 5px;
+   text-decoration: underline;
 }
 
 /* Hero Section */

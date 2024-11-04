@@ -74,7 +74,17 @@ def predict(image_path, cnn_model):
     # Save to media directory
     segmented_filename = os.path.join(settings.MEDIA_ROOT, 'segmented_' + os.path.basename(image_path))
     cv2.imwrite(segmented_filename, preds)
-    return os.path.join(settings.MEDIA_URL, 'segmented_' + os.path.basename(image_path))
+
+    # Calculate the percentage of white pixels in the segmented mask
+    white_pixel_percentage = np.mean(preds) * 100
+
+    if white_pixel_percentage < 1:
+        tumor_status = 'No tumor'
+    else:
+        tumor_status = 'Tumor present'
+
+    return os.path.join(settings.MEDIA_URL, 'segmented_' + os.path.basename(image_path)), tumor_status
+
 
 
 # Views
@@ -95,12 +105,12 @@ def detection(request):
 
         # Use the actual path of the uploaded image
         uploaded_image_path = fs.path(filename)
-        segmented_url = predict(uploaded_image_path, cnn_model)
+        segmented_url, tumor_status = predict(uploaded_image_path, cnn_model)
 
         return render(request, 'detection.html', {
             'image_url': image_url,
-            'segmented_url': segmented_url
+            'segmented_url': segmented_url,
+            'tumor_status': tumor_status  # Pass the tumor status to the template
         })
 
     return render(request, 'detection.html')
-
