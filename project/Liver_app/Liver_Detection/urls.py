@@ -13,7 +13,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('detection/', views.detection, name='detection'),
+    path('detection/', views.detect_tumor, name='detection'),
 ]
 
 # Add this line to serve static files during development
