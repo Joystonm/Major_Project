@@ -259,6 +259,14 @@
   <title>Upload Image for Tumor Detection</title>
   <link rel="stylesheet" href="{% static 'detection.css' %}" />
   <style>
+    .heading{
+      color: white;
+      background-color: #004d40;
+      background-size: cover;
+      padding: 0.5%;
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+    }
     .content-section .text-row {
       text-align: center;
     }
@@ -303,7 +311,7 @@
 </head>
 
 <body>
-  <h1>Upload Image for Tumor Detection</h1>
+  <h1 class="heading">Liver Tumor Detection</h1>
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="image">Select an Image:</label>

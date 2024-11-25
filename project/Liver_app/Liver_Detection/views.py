@@ -379,8 +379,14 @@ def detect_tumor(request):
         # Other visualizations and metrics
         intensity_hist = cv2.calcHist([img_original], [0], None, [50], [0, 256])
         confidence_map = cv2.applyColorMap(img_mask, cv2.COLORMAP_JET)
+        
+                # Initialize metrics and region_values with default values
+        metrics = []
+        region_values = []
+
         props = regionprops(segmented_mask.astype(int))
         region_metrics = []
+
         if len(props) > 0:
             metrics = ['Area', 'Perimeter', 'Eccentricity']
             region_values = [props[0].area, props[0].perimeter, props[0].eccentricity]
@@ -388,7 +394,7 @@ def detect_tumor(request):
 
         # Region Properties Bar Chart
         plt.figure(figsize=(6, 4))
-        plt.bar(metrics, region_values, color='purple')
+        plt.bar(metrics, region_values, color='purple')  # Will render an empty chart if no metrics
         plt.title("Tumor Region Properties", fontsize=14, fontweight='bold')
         buf = BytesIO()
         plt.savefig(buf, format='png')
