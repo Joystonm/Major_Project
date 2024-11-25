@@ -233,14 +233,112 @@ def highlight_tumor(original_image, mask):
     highlighted_image = cv2.addWeighted(highlighted_image, 1, red_overlay, alpha, 0)
     return highlighted_image
 
+# def detect_tumor(request):
+#     if request.method == 'POST' and request.FILES.get('image'):
+#         # Handle uploaded file
+#         uploaded_file = request.FILES['image']
+#         fs = FileSystemStorage(location=settings.MEDIA_ROOT)  # Use MEDIA_ROOT for file storage
+#         image_path = fs.save(uploaded_file.name, uploaded_file)
+        
+#         # Get the absolute file path
+#         absolute_image_path = os.path.join(settings.MEDIA_ROOT, image_path)
+
+#         # Load the CNN model
+#         cnn_model = getCNNModel(input_size=(128, 128, 1))
+#         cnn_model.compile(optimizer=Adam(learning_rate=1e-4), loss=dice_coef_loss, metrics=[dice_coef, 'binary_accuracy'])
+#         weights_path = os.path.join(settings.BASE_DIR, 'Liver_Detection', 'static', 'models', 'cnn_weights.hdf5')
+#         cnn_model.load_weights(weights_path)
+
+#         # Prediction - Process the uploaded image
+#         img_original = cv2.imread(absolute_image_path)
+#         segmented_mask = predict(absolute_image_path , cnn_model)
+#         tumor_stage = classify_tumor_stage(segmented_mask)
+#         img_mask = cv2.imread("segmented_mask.png", cv2.IMREAD_GRAYSCALE)
+
+#         # Highlight tumor
+#         highlighted_image = highlight_tumor(img_original, img_mask)
+
+#         # Tumor Size Analysis
+#         tumor_size = np.sum(segmented_mask) / (segmented_mask.shape[0] * segmented_mask.shape[1])
+#         sizes = ['Tumor', 'Healthy Tissue']
+#         values = [tumor_size, 1 - tumor_size]
+
+#         # Intensity Distribution
+#         intensity_hist = cv2.calcHist([img_original], [0], None, [50], [0, 256])
+
+#         # Confidence Heatmap
+#         confidence_map = cv2.applyColorMap(img_mask, cv2.COLORMAP_JET)
+
+#         # Region Properties
+#         props = regionprops(segmented_mask.astype(int))
+#         region_metrics = []
+#         metrics = []  # Initialize metrics list
+#         region_values = []  # Initialize values list
+        
+#         if len(props) > 0:
+#             metrics = ['Area', 'Perimeter', 'Eccentricity']
+#             region_values = [props[0].area, props[0].perimeter, props[0].eccentricity]
+#             region_metrics = list(zip(metrics, region_values))
+
+#         # Create the bar chart for Region Properties
+#         plt.figure(figsize=(6, 4))
+#         plt.bar(metrics, region_values, color='purple')  # Use region_values instead of values
+#         plt.title("Tumor Region Properties", fontsize=14, fontweight='bold')
+#         # plt.xticks(rotation=180)
+
+#         # Save the plot to a BytesIO object
+#         buf = BytesIO()
+#         plt.savefig(buf, format='png')
+#         buf.seek(0)
+
+#         # Encode the plot as base64
+#         region_properties_base64 = base64.b64encode(buf.read()).decode('utf-8')
+
+#         # Close the plot to free memory
+#         plt.close()
+
+#         # Edge Detection
+#         edges = cv2.Canny(img_mask, 100, 200)
+
+#         # Convert images to display in HTML
+#         def convert_image_to_base64(image):
+#             _, buffer = cv2.imencode('.png', image)
+#             return base64.b64encode(buffer).decode('utf-8')
+
+#         original_image_base64 = convert_image_to_base64(cv2.cvtColor(img_original, cv2.COLOR_BGR2RGB))
+#         mask_image_base64 = convert_image_to_base64(img_mask)
+#         highlighted_image_base64 = convert_image_to_base64(cv2.cvtColor(highlighted_image, cv2.COLOR_BGR2RGB))
+#         confidence_map_base64 = convert_image_to_base64(cv2.cvtColor(confidence_map, cv2.COLOR_BGR2RGB))
+#         edges_base64 = convert_image_to_base64(edges)
+
+#         # Prepare context to pass to the template
+#         context = {
+#             'tumor_stage': tumor_stage,
+#             'tumor_size': tumor_size * 100,
+#             'sizes': sizes,
+#             'values': values,
+#             'intensity_hist': intensity_hist,
+#             'region_metrics': region_metrics,
+#             'region_properties': region_properties_base64,
+#             'original_image': original_image_base64,
+#             'mask_image': mask_image_base64,
+#             'highlighted_image': highlighted_image_base64,
+#             'confidence_map': confidence_map_base64,
+#             'edges': edges_base64,
+#         }
+
+#         return render(request, 'detection.html', context)
+
+#     else:
+#         # For GET requests, render the form to upload an image
+#         return render(request, 'detection.html')
+
 def detect_tumor(request):
     if request.method == 'POST' and request.FILES.get('image'):
         # Handle uploaded file
         uploaded_file = request.FILES['image']
         fs = FileSystemStorage(location=settings.MEDIA_ROOT)  # Use MEDIA_ROOT for file storage
         image_path = fs.save(uploaded_file.name, uploaded_file)
-        
-        # Get the absolute file path
         absolute_image_path = os.path.join(settings.MEDIA_ROOT, image_path)
 
         # Load the CNN model
@@ -251,7 +349,7 @@ def detect_tumor(request):
 
         # Prediction - Process the uploaded image
         img_original = cv2.imread(absolute_image_path)
-        segmented_mask = predict(absolute_image_path , cnn_model)
+        segmented_mask = predict(absolute_image_path, cnn_model)
         tumor_stage = classify_tumor_stage(segmented_mask)
         img_mask = cv2.imread("segmented_mask.png", cv2.IMREAD_GRAYSCALE)
 
@@ -263,44 +361,46 @@ def detect_tumor(request):
         sizes = ['Tumor', 'Healthy Tissue']
         values = [tumor_size, 1 - tumor_size]
 
-        # Intensity Distribution
+        # Generate the Tumor Size Analysis Pie Chart
+        plt.figure(figsize=(6, 4))
+        plt.pie(values, labels=sizes, autopct='%1.1f%%', colors=['red', 'lightgray'])
+        plt.title("Tumor vs Healthy Tissue Distribution", fontsize=14, fontweight='bold')
+
+        # Save the pie chart as a base64-encoded image
+        buf = BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)
+        tumor_size_chart_base64 = base64.b64encode(buf.read()).decode('utf-8')
+        buf.close()
+
+        # Close the plot to free memory
+        plt.close()
+
+        # Other visualizations and metrics
         intensity_hist = cv2.calcHist([img_original], [0], None, [50], [0, 256])
-
-        # Confidence Heatmap
         confidence_map = cv2.applyColorMap(img_mask, cv2.COLORMAP_JET)
-
-        # Region Properties
         props = regionprops(segmented_mask.astype(int))
         region_metrics = []
-        metrics = []  # Initialize metrics list
-        region_values = []  # Initialize values list
-        
         if len(props) > 0:
             metrics = ['Area', 'Perimeter', 'Eccentricity']
             region_values = [props[0].area, props[0].perimeter, props[0].eccentricity]
             region_metrics = list(zip(metrics, region_values))
 
-        # Create the bar chart for Region Properties
+        # Region Properties Bar Chart
         plt.figure(figsize=(6, 4))
-        plt.bar(metrics, region_values, color='purple')  # Use region_values instead of values
+        plt.bar(metrics, region_values, color='purple')
         plt.title("Tumor Region Properties", fontsize=14, fontweight='bold')
-        plt.xticks(rotation=45)
-
-        # Save the plot to a BytesIO object
         buf = BytesIO()
         plt.savefig(buf, format='png')
         buf.seek(0)
-
-        # Encode the plot as base64
         region_properties_base64 = base64.b64encode(buf.read()).decode('utf-8')
-
-        # Close the plot to free memory
+        buf.close()
         plt.close()
 
         # Edge Detection
         edges = cv2.Canny(img_mask, 100, 200)
 
-        # Convert images to display in HTML
+        # Convert images to base64
         def convert_image_to_base64(image):
             _, buffer = cv2.imencode('.png', image)
             return base64.b64encode(buffer).decode('utf-8')
@@ -311,12 +411,13 @@ def detect_tumor(request):
         confidence_map_base64 = convert_image_to_base64(cv2.cvtColor(confidence_map, cv2.COLOR_BGR2RGB))
         edges_base64 = convert_image_to_base64(edges)
 
-        # Prepare context to pass to the template
+        # Context for rendering the template
         context = {
             'tumor_stage': tumor_stage,
             'tumor_size': tumor_size * 100,
             'sizes': sizes,
             'values': values,
+            'tumor_size_chart': tumor_size_chart_base64,
             'intensity_hist': intensity_hist,
             'region_metrics': region_metrics,
             'region_properties': region_properties_base64,
@@ -330,5 +431,5 @@ def detect_tumor(request):
         return render(request, 'detection.html', context)
 
     else:
-        # For GET requests, render the form to upload an image
+        # Render the form for GET requests
         return render(request, 'detection.html')
