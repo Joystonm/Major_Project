@@ -16,25 +16,28 @@ This project focuses on detecting and classifying liver tumors from CT scan imag
 Follow these steps to set up and run the project on your local machine:
 
 ### **Prerequisites**  
-#### Install Django
-pip install django
+ **Install Pillow for file handling**
+ ```bash
+ pip install Pillow
 
-####  Install Pillow for file handling
-pip install Pillow
-
-####  Install OpenCV
+**Install OpenCV**
+```bash
 pip install opencv-python
 
-####  Install Matplotlib (non-GUI backend)
+**Install Matplotlib (non-GUI backend)**
+```bash
 pip install matplotlib
 
-####  Install NumPy
+**Install NumPy**
+```bash
 pip install numpy
 
-####  Install Keras
+**Install Keras**
+```bash
 pip install keras
 
-####  Install Scikit-image for image processing
+**Install Scikit-image for image processing**
+```bash
 pip install scikit-image
 
 
