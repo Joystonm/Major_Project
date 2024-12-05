@@ -17,27 +17,21 @@ Follow these steps to set up and run the project on your local machine:
 
 ### **Prerequisites**  
  **Install Pillow for file handling**
- ```bash
  pip install Pillow
 
 **Install OpenCV**
-```bash
 pip install opencv-python
 
 **Install Matplotlib (non-GUI backend)**
-```bash
 pip install matplotlib
 
 **Install NumPy**
-```bash
 pip install numpy
 
 **Install Keras**
-```bash
 pip install keras
 
 **Install Scikit-image for image processing**
-```bash
 pip install scikit-image
 
 
