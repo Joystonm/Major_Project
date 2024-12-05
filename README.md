@@ -25,4 +25,10 @@ Follow these steps to set up and run the project on your local machine:
 
 1. **Activate Virtual Environment**  
    ```bash  
-   \Liver_env\Scripts\activate  
+   \Liver_env\Scripts\activate
+2. **Navigate to the project directory**
+      ```bash 
+   cd Liver_app
+3. **Run the Django development server**
+      ```bash 
+   python manage.py runserver
