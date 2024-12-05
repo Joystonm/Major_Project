@@ -34,6 +34,7 @@ pip install keras
 **Install Scikit-image for image processing :**
 pip install scikit-image
 
+---
 
 ### **Installation and Usage**  
 
