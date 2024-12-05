@@ -40,7 +40,7 @@ pip install scikit-image
 
 1. **Activate Virtual Environment**  
    ```bash  
-   \Liver_env\Scripts\activate
+   .\Liver_env\Scripts\activate
 2. **Navigate to the project directory**
       ```bash 
    cd Liver_app
