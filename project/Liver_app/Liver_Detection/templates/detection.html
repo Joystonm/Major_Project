@@ -259,7 +259,7 @@
   <title>Upload Image for Tumor Detection</title>
   <link rel="stylesheet" href="{% static 'detection.css' %}" />
   <style>
-    .heading{
+    .heading {
       color: white;
       background-color: #004d40;
       background-size: cover;
@@ -267,6 +267,7 @@
       text-align: center;
       font-family: 'Courier New', Courier, monospace;
     }
+
     .content-section .text-row {
       text-align: center;
     }
@@ -328,6 +329,20 @@
       <p class="tstage">
         Tumor Stage: <span class="stage">{{ tumor_stage }}</span>
       </p>
+      <p class="description"><strong>
+          {% if tumor_stage == 'No tumor' %}
+          Indicates no visible tumor in the segmented image.
+          {% elif tumor_stage == 'Stage I: Early Stage' %}
+          A small, localized tumor is detected.
+          {% elif tumor_stage == 'Stage II: Intermediate Stage' %}
+          Tumor shows moderate growth but is not yet widespread.
+          {% elif tumor_stage == 'Stage III: Advanced Stage' %}
+          Tumor has grown considerably and  invading surrounding tissues.
+          {% elif tumor_stage == 'Stage IV: Critical Stage' %}
+          Tumor is large and likely spreading to other areas, indicating a severe condition.
+          {% endif %}
+        </strong>
+      </p>
     </div>
 
 
@@ -356,7 +371,7 @@
       </div>
     </div>
 
-    <h3>Region Metrics</h3>
+    <h3>Region Properties</h3>
     <div class="region">
       <div class="rvalue">
         <img class="region-properties-image" src="data:image/png;base64,{{ region_properties }}"

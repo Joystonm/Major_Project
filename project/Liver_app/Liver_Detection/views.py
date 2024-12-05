@@ -216,21 +216,29 @@ def classify_tumor_stage(segmented_mask):
     if white_pixel_percentage < 1:
         return 'No tumor'
     elif white_pixel_percentage < 1.5:
-        return 'Stage I'
+        return 'Stage I: Early Stage'
     elif white_pixel_percentage < 5:
-        return 'Stage II'
+        return 'Stage II: Intermediate Stage'
     elif white_pixel_percentage < 10:
-        return 'Stage III'
+        return 'Stage III: Advanced Stage'
     else:
-        return 'Stage IV'
+        return 'Stage IV: Critical Stage'
 
+# def highlight_tumor(original_image, mask):
+#     mask = cv2.resize(mask, (original_image.shape[1], original_image.shape[0]))
+#     highlighted_image = original_image.copy()
+#     red_overlay = np.zeros_like(original_image)
+#     red_overlay[mask > 0] = [0, 0, 255]  # Red color in BGR
+#     alpha = 0.3
+#     highlighted_image = cv2.addWeighted(highlighted_image, 1, red_overlay, alpha, 0)
+#     return highlighted_image
 def highlight_tumor(original_image, mask):
     mask = cv2.resize(mask, (original_image.shape[1], original_image.shape[0]))
     highlighted_image = original_image.copy()
-    red_overlay = np.zeros_like(original_image)
-    red_overlay[mask > 0] = [0, 0, 255]  # Red color in BGR
+    green_overlay = np.zeros_like(original_image)
+    green_overlay[mask > 0] = [0, 255, 0]  # Green color in BGR
     alpha = 0.3
-    highlighted_image = cv2.addWeighted(highlighted_image, 1, red_overlay, alpha, 0)
+    highlighted_image = cv2.addWeighted(highlighted_image, 1, green_overlay, alpha, 0)
     return highlighted_image
 
 # def detect_tumor(request):
