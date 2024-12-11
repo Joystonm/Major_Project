@@ -20,6 +20,33 @@ This project focuses on detecting and classifying liver tumors from CT scan imag
 6. **Results Visualization**: Segmentation maps and analytical results are displayed on the web interface.
 
 ---
+### **Hardware Requirements**  
+Hardware requirements refer to the physical components of a computer and related devices.  
+
+- **Internal Hardware Devices**: Motherboards, hard drives, RAM  
+- **External Hardware Devices**: Monitors, keyboards, mice, printers, scanners  
+
+| Component           | Specification                      |
+|---------------------|------------------------------------|
+| **CPU**             | 8th Generation Intel® Core™ i5 Processor |
+| **RAM**             | 8 GB or above                     |
+| **Hard Disk**       | 500 GB or above                   |
+| **GPU**             | NVIDIA GTX 1650                   |
+
+---
+
+### **Software Requirements**  
+Software requirements involve determining the needs of stakeholders that the software will address.  
+
+| Component                    | Specification                  |
+|------------------------------|--------------------------------|
+| **Operating System**         | Windows 11                    |
+| **Programming Language**     | Python                        |
+| **Backend Libraries**        | Keras, OpenCV, NumPy          |
+| **Front-end Framework**      | Django                        |
+| **Integrated Development Environment** | Jupyter Notebook       |
+
+---
 ### **Technologies Used**
 
 - **Programming Language**: Python  
