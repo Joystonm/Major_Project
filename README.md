@@ -3,14 +3,17 @@
 ## **About the Project**  
 This project focuses on detecting and classifying liver tumors from CT scan images using deep learning techniques. The system utilizes image processing methods and a Convolutional Neural Network (CNN) model for accurate tumor segmentation and classification based on size, stage, and region. The project also integrates a Django-based web application to provide a user-friendly interface for uploading CT scan images and obtaining tumor analysis results.
 
-### **Features**  
-- **Image Preprocessing**: Thresholding, normalization, connected component labeling, and color mapping.  
-- **Tumor Segmentation**: Uses a CNN model for precise tumor detection.  
-- **Tumor Classification**: Classifies tumors based on size, stage, and location using segmented masks.  
-- **Metrics Calculation**: Calculates tumor size, area, perimeter, and eccentricity.  
-- **Web Interface**: Provides a simple interface for uploading CT scan images and viewing results.  
+### **System Architecture**  
+The project is divided into the following stages:  
+1. **Image Preprocessing**: Applies techniques like normalization, thresholding, and connected component labeling to prepare CT images.  
+2. **Tumor Segmentation**: Detects and isolates tumor regions using a trained CNN model.  
+3. **Metrics Calculation**: Analyzes tumor characteristics, including size, area, perimeter, and eccentricity.  
+4. **Classification**: Classifies tumors based on size, stage, and location.  
+5. **Visualization**: Generates intuitive visual representations of segmentation and classification results.  
+6. **Web Application**: Provides a seamless interface for user interaction and analysis display.  
 
 ---
+
 ### **System Workflow**  
 1. **Upload CT Scan Image**: The system accepts CT scan images uploaded through the web interface.  
 2. **Image Preprocessing**: Techniques such as normalization and color mapping prepare the image for analysis.  
@@ -18,6 +21,14 @@ This project focuses on detecting and classifying liver tumors from CT scan imag
 4. **Tumor Classification**: Tumors are classified into stages and regions based on size and other features.  
 5. **Metrics Display**: Outputs include tumor size, stage, area, and other key metrics.  
 6. **Results Visualization**: Segmentation maps and analytical results are displayed on the web interface.
+
+---
+### **Features**  
+- **Image Preprocessing**: Thresholding, normalization, connected component labeling, and color mapping.  
+- **Tumor Segmentation**: Uses a CNN model for precise tumor detection.  
+- **Tumor Classification**: Classifies tumors based on size, stage, and location using segmented masks.  
+- **Metrics Calculation**: Calculates tumor size, area, perimeter, and eccentricity.  
+- **Web Interface**: Provides a simple interface for uploading CT scan images and viewing results.  
 
 ---
 ### **Hardware Requirements**    
