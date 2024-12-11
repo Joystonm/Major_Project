@@ -25,4 +25,3 @@ This project focuses on detecting and classifying liver tumors from CT scan imag
 3. **Run the Django development server**
       ```
    python manage.py runserver
-         ``` 
