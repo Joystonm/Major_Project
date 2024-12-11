@@ -11,6 +11,26 @@ This project focuses on detecting and classifying liver tumors from CT scan imag
 - **Web Interface**: Provides a simple interface for uploading CT scan images and viewing results.  
 
 ---
+### **System Workflow**  
+1. **Upload CT Scan Image**: The system accepts CT scan images uploaded through the web interface.  
+2. **Image Preprocessing**: Techniques such as normalization and color mapping prepare the image for analysis.  
+3. **Tumor Detection**: A trained CNN model identifies and segments the tumor regions.  
+4. **Tumor Classification**: Tumors are classified into stages and regions based on size and other features.  
+5. **Metrics Display**: Outputs include tumor size, stage, area, and other key metrics.  
+6. **Results Visualization**: Segmentation maps and analytical results are displayed on the web interface.
+
+---
+### **Technologies Used**
+
+- **Programming Language**: Python  
+- **Web Framework**: Django  
+- **Deep Learning Framework**: TensorFlow, Keras  
+- **Image Processing**: OpenCV, NumPy  
+- **Visualization Tools**: Matplotlib, Seaborn  
+- **Version Control**: Git, GitHub  
+- **Deployment Environment**: Virtual Environment (venv)  
+- **Operating System**: Windows/Linux  
+---
 
 ### **Installation and Usage**  
 
