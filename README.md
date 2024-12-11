@@ -20,11 +20,7 @@ This project focuses on detecting and classifying liver tumors from CT scan imag
 6. **Results Visualization**: Segmentation maps and analytical results are displayed on the web interface.
 
 ---
-### **Hardware Requirements**  
-Hardware requirements refer to the physical components of a computer and related devices.  
-
-- **Internal Hardware Devices**: Motherboards, hard drives, RAM  
-- **External Hardware Devices**: Monitors, keyboards, mice, printers, scanners  
+### **Hardware Requirements**    
 
 | Component           | Specification                      |
 |---------------------|------------------------------------|
@@ -36,7 +32,6 @@ Hardware requirements refer to the physical components of a computer and related
 ---
 
 ### **Software Requirements**  
-Software requirements involve determining the needs of stakeholders that the software will address.  
 
 | Component                    | Specification                  |
 |------------------------------|--------------------------------|
